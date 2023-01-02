@@ -20,18 +20,20 @@ public class Spacecraft extends Actor {
         return position;
     }
 
-    @Override
-    public int getWidth() {
+    public float getX() {
+        return position.x;
+    }
+
+    public float getY() {
+        return position.y;
+    }
+
+    public float getWidth() {
         return width;
     }
 
-    @Override
-    public int getHeight() {
+    public float getHeight() {
         return height;
-    }
-
-    public int getDirection() {
-        return direction;
     }
 
     public Spacecraft(float x, float y, int width, int height) {
@@ -47,7 +49,6 @@ public class Spacecraft extends Actor {
     }
 
     public void act(float delta) {
-
 // Movem l'Spacecraft depenent de la direcció controlant que no surti de la pantalla
         switch (direction) {
             case SPACECRAFT_UP:
@@ -63,5 +64,20 @@ public class Spacecraft extends Actor {
             case SPACECRAFT_STRAIGHT:
                 break;
         }
+    }
+
+    // Canviem la direcció de l'Spacecraft: Puja
+    public void goUp() {
+        direction = SPACECRAFT_UP;
+    }
+
+    // Canviem la direcció de l'Spacecraft: Baixa
+    public void goDown() {
+        direction = SPACECRAFT_DOWN;
+    }
+
+    // Posem l'Spacecraft al seu estat original
+    public void goStraight() {
+        direction = SPACECRAFT_STRAIGHT;
     }
 }
