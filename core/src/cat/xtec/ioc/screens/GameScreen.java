@@ -58,24 +58,24 @@ public class GameScreen implements Screen {
     private void drawElements(){
 
         /* 1 */
-// Pintem el fons de negre per evitar el "flickering"
-        Gdx.gl20.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-        Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        // Pintem el fons de negre per evitar el "flickering"
+        //Gdx.gl20.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+        //Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         /* 2 */
-// Recollim les propietats del Batch de l'Stage
+        // Recollim les propietats del Batch de l'Stage
         shapeRenderer.setProjectionMatrix(batch.getProjectionMatrix());
-// Inicialitzem el shaperenderer
+        // Inicialitzem el shaperenderer
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
 
         /* 3 */
-// Definim el color (verd)
+        // Definim el color (verd)
         shapeRenderer.setColor(new Color(0, 1, 0, 1));
-// Pintem la nau
+        // Pintem la nau
         shapeRenderer.rect(spacecraft.getX(), spacecraft.getY(), spacecraft.getWidth(), spacecraft.getHeight());
 
         /* 4 */
-// Recollim tots els Asteroid
+        // Recollim tots els Asteroid
         ArrayList<Asteroid> asteroids = scrollHandler.getAsteroids();
         Asteroid asteroid;
 
@@ -128,7 +128,7 @@ public class GameScreen implements Screen {
         stage.draw();
         stage.act(delta);
 
-        drawElements();
+        //drawElements();
     }
 
     @Override
