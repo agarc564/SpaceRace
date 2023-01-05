@@ -1,8 +1,10 @@
 package cat.xtec.ioc.objects;
 
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
+import cat.xtec.ioc.helpers.AssetManager;
 import cat.xtec.ioc.utils.Settings;
 
 public class Spacecraft extends Actor {
@@ -13,6 +15,7 @@ public class Spacecraft extends Actor {
 
     // Paràmetres de l'Spacecraft
     private Vector2 position;
+
     private int width, height;
     private int direction;
 
@@ -64,6 +67,12 @@ public class Spacecraft extends Actor {
             case SPACECRAFT_STRAIGHT:
                 break;
         }
+    }
+
+    @Override
+    public void draw(Batch batch, float parentAlpha) {
+        super.draw(batch, parentAlpha);
+        batch.draw(AssetManager.spacecraft, position.x, position.y, width, height);
     }
 
     // Canviem la direcció de l'Spacecraft: Puja
