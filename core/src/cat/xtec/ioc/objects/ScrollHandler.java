@@ -63,10 +63,10 @@ public class ScrollHandler extends Group {
         // Creem l'ArrayList
         asteroids = new ArrayList<Asteroid>();
 
-// Definim una mida aleatòria entre el mínim i el màxim
+        // Definim una mida aleatòria entre el mínim i el màxim
         float newSize = Methods.randomFloat(Settings.MIN_ASTEROID, Settings.MAX_ASTEROID) * 34;
 
-// Afegim el primer asteroide a l'array i al grup
+        // Afegim el primer asteroide a l'array i al grup
         Asteroid asteroid = new Asteroid(Settings.GAME_WIDTH, r.nextInt(Settings.GAME_HEIGHT - (int) newSize), newSize, newSize, Settings.ASTEROID_SPEED);
         asteroids.add(asteroid);
         addActor(asteroid);
