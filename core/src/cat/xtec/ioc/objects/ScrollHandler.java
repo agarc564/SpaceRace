@@ -86,6 +86,17 @@ public class ScrollHandler extends Group {
 
     }
 
+    public boolean collides(Spacecraft nau) {
+
+     // Comprovem les col·lisions entre cada asteroide i la nau
+        for (Asteroid asteroid : asteroids) {
+            if (asteroid.collides(nau)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public ArrayList<Asteroid> getAsteroids() {
         return asteroids;
     }

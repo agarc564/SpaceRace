@@ -1,6 +1,8 @@
 package cat.xtec.ioc.objects;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
@@ -15,9 +17,10 @@ public class Spacecraft extends Actor {
 
     // Paràmetres de l'Spacecraft
     private Vector2 position;
-
     private int width, height;
     private int direction;
+    private Rectangle collisionRect;
+
 
     public Vector2 getPosition() {
         return position;
@@ -39,15 +42,22 @@ public class Spacecraft extends Actor {
         return height;
     }
 
+    public Rectangle getCollisionRect() {
+        return collisionRect;
+    }
+
     public Spacecraft(float x, float y, int width, int height) {
 
-// Inicialitzem els arguments segons la crida del constructor
+        // Inicialitzem els arguments segons la crida del constructor
         this.width = width;
         this.height = height;
         position = new Vector2(x, y);
 
-// Inicialitzem l'Spacecraft a l'estat normal
+        // Inicialitzem l'Spacecraft a l'estat normal
         direction = SPACECRAFT_STRAIGHT;
+
+        // Creem el rectangle de col·lisions
+        collisionRect = new Rectangle();
 
     }
 
@@ -67,12 +77,13 @@ public class Spacecraft extends Actor {
             case SPACECRAFT_STRAIGHT:
                 break;
         }
+        collisionRect.set(position.x, position.y + 3, width, 10);
     }
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
         super.draw(batch, parentAlpha);
-        batch.draw(AssetManager.spacecraft, position.x, position.y, width, height);
+        batch.draw(getSpacecraftTexture(), position.x, position.y, width, height);
     }
 
     // Canviem la direcció de l'Spacecraft: Puja
@@ -88,5 +99,21 @@ public class Spacecraft extends Actor {
     // Posem l'Spacecraft al seu estat original
     public void goStraight() {
         direction = SPACECRAFT_STRAIGHT;
+    }
+
+    // Obtenim el TextureRegion depenent de la posició de l'spacecraft
+    public TextureRegion getSpacecraftTexture() {
+
+        switch (direction) {
+
+            case SPACECRAFT_STRAIGHT:
+                return AssetManager.spacecraft;
+            case SPACECRAFT_UP:
+                return AssetManager.spacecraftUp;
+            case SPACECRAFT_DOWN:
+                return AssetManager.spacecraftDown;
+            default:
+                return AssetManager.spacecraft;
+        }
     }
 }
